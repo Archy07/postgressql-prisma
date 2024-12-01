@@ -1,3 +1,5 @@
+import { z } from 'zod';
 import { Collection } from '../models/collection';
-import { GenericResponse } from './generic-response';
-export type ListCollectionsResponse = GenericResponse<Collection[]>;
+
+export const ListCollectionsResponse = z.object({ status: z.enum(['success', 'error', 'pending']), data: z.array(Collection) });
+export type ListCollectionsResponse = z.infer<typeof ListCollectionsResponse>;

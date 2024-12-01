@@ -4,6 +4,7 @@ import { MagnifyingGlassIcon, ChevronUpIcon, ChevronDownIcon } from '@heroicons/
 import { ListProductsResponse } from '@repo/schemas';
 import { productsQueryOptions } from '../utils/productsQueryOptions';
 import ProductCard from './ProductCard';
+import CollectionSelector from './CollectionSelector';
 
 const collections = [1, 2, 3];
 
@@ -67,18 +68,10 @@ const ProductList = () => {
                     </button>
 
                     <div className="relative">
-                        <select
-                            value={selectedCollection}
+                        <CollectionSelector
+                            selectedCollection={selectedCollection}
                             onChange={handleCollectionChange}
-                            className="p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                        >
-                            <option value="">Seleccionar colección</option>
-                            {collections.map((collection) => (
-                                <option key={collection} value={collection}>
-                                    {collection}
-                                </option>
-                            ))}
-                        </select>
+                        />
                     </div>
                 </div>
             </div>
