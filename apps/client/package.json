@@ -11,10 +11,12 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
+    "@tanstack/react-query": "^5.62.0",
     "install": "^0.13.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router": "^7.0.1"
+    "react-router": "^7.0.1",
+    "@repo/schemas": "workspace:*"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

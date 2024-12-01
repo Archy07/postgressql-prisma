@@ -1,14 +1,16 @@
 import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { MagnifyingGlassIcon, ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/16/solid';
+import { ListProductsResponse } from '@repo/schemas';
 import ProductCard from './ProductCard';
 
-// Datos de ejemplo (con colecciones y precios)
-const products = [
-    { id: 1, name: 'Producto 1', image: '/images/product1.jpg', price: 19.99, collections: ['Colección A', 'Colección B'] },
-    { id: 2, name: 'Producto 2', image: '/images/product2.jpg', price: 29.99, collections: ['Colección B'] },
-    { id: 3, name: 'Producto 3', image: '/images/product3.jpg', price: 39.99, collections: ['Colección A'] },
-    // Más productos
-];
+// // Datos de ejemplo (con colecciones y precios)
+// const products = [
+//     { id: 1, name: 'Producto 1', image: '/images/product1.jpg', price: 19.99, collections: ['Colección A', 'Colección B'] },
+//     { id: 2, name: 'Producto 2', image: '/images/product2.jpg', price: 29.99, collections: ['Colección B'] },
+//     { id: 3, name: 'Producto 3', image: '/images/product3.jpg', price: 39.99, collections: ['Colección A'] },
+//     // Más productos
+// ];
 
 const collections = ['Colección A', 'Colección B', 'Colección C'];
 
@@ -17,18 +19,37 @@ const ProductList = () => {
     const [selectedCollection, setSelectedCollection] = useState<string>('');
     const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
+    // Use query from tanstack
+    const { status, data, error } = useQuery<ListProductsResponse>({
+        queryKey: ['todos'], queryFn: () => {
+            return fetch('http://localhost:5001/api/product').then((result) => result.json())
+        }
+    });
+
+    if (status === 'pending') {
+        return <span>Loading...</span>
+    }
+
+    if (status === 'error') {
+        return <span>Error: {error.message}</span>
+    }
+
+    const products = data.data;
+
+
     // Filtrar productos por nombre
     const filteredBySearch = products.filter((product) =>
         product.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     // Filtrar productos por colección seleccionada
-    const filteredByCollection = selectedCollection
-        ? filteredBySearch.filter((product) => product.collections.includes(selectedCollection))
-        : filteredBySearch;
+    // const filteredByCollection = selectedCollection
+    //     ? filteredBySearch.filter((product) => product.collections.includes(selectedCollection))
+    //     : filteredBySearch;
 
     // Ordenar productos por precio
-    const sortedProducts = [...filteredByCollection].sort((a, b) => {
+    // const sortedProducts = [...filteredByCollection].sort((a, b) => {
+    const sortedProducts = [...filteredBySearch].sort((a, b) => {
         if (sortOrder === 'asc') return a.price - b.price;
         return b.price - a.price;
     });
