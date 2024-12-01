@@ -3,7 +3,6 @@ import { useParams } from 'react-router';
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
   
-  // Aquí obtendrás el producto por ID (dummy data por ahora)
   const product = { id, name: `Producto ${id}`, description: 'Descripción del producto', price: 19.99 };
 
   return (

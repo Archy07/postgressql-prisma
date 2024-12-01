@@ -13,7 +13,8 @@ export class ProductsService {
     }
     if (q) {
       where.name = {
-        contains: `'${q.replace(/[^a-zA-Z0-9\s]/g, '')}'`,
+        contains: q.replace(/[^a-zA-Z0-9\s]/g, ''),
+        mode: 'insensitive'
       };
     }
     const result = await prisma.product.findMany({
