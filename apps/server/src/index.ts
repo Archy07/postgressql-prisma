@@ -7,6 +7,7 @@ import { healthRoute } from './routes/health';
 import { staticRoute } from './routes/static';
 import { errorHandler } from './middlewares/error-handler';
 import { collectionsRoute } from './routes/collections';
+import { variantsRoute } from './routes/variants';
 
 const app = express()
 
@@ -20,6 +21,7 @@ staticRoute(app);
 healthRoute(app);
 productsRoute(app);
 collectionsRoute(app);
+variantsRoute(app);
 
 app.use(errorHandler);
 

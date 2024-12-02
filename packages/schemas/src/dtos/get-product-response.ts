@@ -5,5 +5,5 @@
 import { z } from 'zod';
 import { Product } from '../models/product';
 
-export const GetProductResponse = z.object({ status: z.enum(['success', 'error', 'pending']), data: Product });
+export const GetProductResponse = z.object({ status: z.enum(['success', 'error', 'pending']), data: z.nullable(Product) });
 export type GetProductResponse = z.infer<typeof GetProductResponse>;

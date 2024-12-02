@@ -35,7 +35,6 @@ export class ProductController {
     // Crear un nuevo producto
     async createProduct(req: Request, res: Response): Promise<void> {
         const { name, description }: Product = req.body;
-        console.log(name)
         try {
             if (!name) {
                 res.status(400).json({ message: 'Name is required' });
