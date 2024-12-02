@@ -13,6 +13,8 @@ const CollectionSelector = ({ selectedCollection, onChange }: CollectionSelector
     queryFn: () => fetch('http://localhost:5001/api/collection').then((res) => res.json()),
   });
 
+  const collections = data?.data ?? [];
+
   if (status === 'pending') {
     return <span>Cargando colecciones...</span>;
   }
@@ -28,7 +30,7 @@ const CollectionSelector = ({ selectedCollection, onChange }: CollectionSelector
       className="p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"
     >
       <option value="">Seleccionar colección</option>
-      {data?.data.map((collection) => (
+      {collections.map((collection) => (
         <option key={collection.id} value={collection.id}>
           {collection.name}
         </option>
