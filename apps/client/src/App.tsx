@@ -1,22 +1,26 @@
-import { useState } from 'react'
+// export default App
+import { BrowserRouter as Router, Route, Routes } from 'react-router';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import ProductList from './components/ProductList';
+import ProductDetail from './components/ProductDetail';
+import {QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-function App() {
-  const [counter, setCounter] = useState(0)
+const queryClient = new QueryClient;
 
+const App = () => {
   return (
-    <main className="container flex flex-col gap-8 justify-center items-center min-h-screen p-8 text-center mx-auto">
-      <h1 className="text-5xl md:text-7xl font-bold text-balance max-w-screen-lg">
-        Welcome to the Typescript Fullstack Project!
-      </h1>
-      <p>This is the client starting point 🚀</p>
-      <button
-        className="px-4 py-2 rounded-md bg-blue-600 text-white"
-        onClick={() => setCounter((v) => v + 1)}
-      >
-        Clicks: {counter}
-      </button>
-    </main>
-  )
-}
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/productos" element={<ProductList />} />
+          <Route path="/productos/:id" element={<ProductDetail />} />
+        </Routes>
+      </Router>
+    </QueryClientProvider>
+  );
+};
 
-export default App
+export default App;

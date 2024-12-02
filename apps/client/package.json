@@ -10,8 +10,13 @@
     "start": "vite preview"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
+    "@tanstack/react-query": "^5.62.0",
+    "install": "^0.13.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router": "^7.0.1",
+    "@repo/schemas": "workspace:*"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
@@ -24,10 +29,10 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.7",
-    "typescript": "^5.3.3",
     "postcss": "^8.4.39",
     "prettier": "^3.3.2",
     "tailwindcss": "^3.4.4",
+    "typescript": "^5.3.3",
     "vite": "^5.3.1"
   }
 }
