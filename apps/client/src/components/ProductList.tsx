@@ -6,8 +6,6 @@ import { productsQueryOptions } from '../utils/productsQueryOptions';
 import ProductCard from './ProductCard';
 import CollectionSelector from './CollectionSelector';
 
-const collections = [1, 2, 3];
-
 const ProductList = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedCollection, setSelectedCollection] = useState<number>();
